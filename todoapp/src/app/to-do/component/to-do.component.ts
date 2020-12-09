@@ -12,8 +12,18 @@ import ToDoState from '../todo.state';
   styleUrls: ['./to-do.component.css']
 })
 export class ToDoComponent implements OnInit {
+  todo$: Observable<ToDoState>;
+  ToDoSubscription: Subscription;
+  ToDoList: ToDo[] = [];
+  
+  Title: string = '';
+  IsCompleted: boolean = false;
+  
+  todoError: Error = null;
+
   constructor(private store: Store<{ todos: ToDoState }>) {
     this.todo$ = store.pipe(select('todos'));
+    console.log(store.select('todos'));
   }
 
   ngOnInit() {
@@ -29,15 +39,6 @@ export class ToDoComponent implements OnInit {
 
     this.store.dispatch(ToDoActions.BeginGetToDoAction());
   }
-
-  todo$: Observable<ToDoState>;
-  ToDoSubscription: Subscription;
-  ToDoList: ToDo[] = [];
-
-  Title: string = '';
-  IsCompleted: boolean = false;
-
-  todoError: Error = null;
 
   createToDo() {
     const todo: ToDo = { Title: this.Title, IsCompleted: this.IsCompleted };
