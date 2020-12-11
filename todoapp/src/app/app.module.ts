@@ -10,17 +10,19 @@ import { EffectsModule } from '@ngrx/effects';
 import { ToDoEffects } from './to-do/todo.effects';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { EnsembleAngular } from '@corelogic/ensemble-angular';
 
 // console.log all actions
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function(state, action) {
     console.log('state', state);
     console.log('action', action);
- 
+    
     return reducer(state, action);
   };
 }
- 
+
+declare var CLUI: any;
 export const metaReducers: MetaReducer<any>[] = [debug];
 
 @NgModule({
@@ -33,6 +35,7 @@ export const metaReducers: MetaReducer<any>[] = [debug];
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    EnsembleAngular,
     StoreModule.forRoot({ todos: ToDoReducer }, { metaReducers }),
     EffectsModule.forRoot([ToDoEffects])
   ],

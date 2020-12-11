@@ -24,9 +24,15 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/@corelogic/clui/dist/css/corelogic-ui.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+              "./node_modules/@corelogic/clui/dist/js/corelogic-ui.js"
+            ]
           },
           "configurations": {
             "production": {
